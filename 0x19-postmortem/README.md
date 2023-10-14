@@ -9,13 +9,13 @@ On 13/10/2023 at 2100hrs WAT, 100% of the webserver was down for a total of 15 m
 <hr>
 2100hrs WAT: Issue was detected. 2105hrs WAT: While using curl to check the response headers, the custom header indicating the name of the server that sent the response showed that only one server was responding to the requests 2108hrs WAT: Issue was handled by Silvia, the server administrator who logged into the server that was not responding. 2109hrs WAT: She ran the command sudo service nginx status to bring up a log of the current status of nginx. 2111hrs WAT: It was discovered that nginx was not running and the cause of failure was outlined in the following snippet:
 
- <ul><code>nginx[31101]: nginx: [emerg] invalid number of arguments in "rewrite" directive in /etc/nginx/sites-available/default</code></ul> 
- <ul><code>nginx[31101]: nginx: configuration file /etc/nginx/nginx.conf test failed</code> 2113hrs WAT: She then opened the file stated in the first line of the snippet and added a semicolon to the rewrite directive. 2114hrs WAT: The file was saved and restarted Nginx. 2115hrs WAT: Service was restored.</ul>
+ <li><ul><code>nginx[31101]: nginx: [emerg] invalid number of arguments in "rewrite" directive in /etc/nginx/sites-available/default</code></ul> 
+ <ul><code>nginx[31101]: nginx: configuration file /etc/nginx/nginx.conf test failed</code> 2113hrs WAT: She then opened the file stated in the first line of the snippet and added a semicolon to the rewrite directive. 2114hrs WAT: The file was saved and restarted Nginx. 2115hrs WAT: Service was restored.</ul></li>
  <p>
-<h3>Root Cause and Resolution</h3>
+<hr><h3>Root Cause and Resolution</h3>
 The root cause was the syntax error in the rewrite directive added to the /etc/nginx/sites-available/default. This was resolved by first checking the status of the nginx service. This outlined the cause of error as a syntax error in the file /etc/nginx/sites-available/default. The file was opened and a semicolon was added at the end of the rewrite directive. Afterwards, the file was saved and nginx was restarted. This restored the service.
 
 <h3>Corrective Measures</h3>
-<ul>Ensure that status of a service whose configuration file has been altered is checked after restart/reload.</ul>
+<li><ul>Ensure that status of a service whose configuration file has been altered is checked after restart/reload.</ul>
 
-<ul>Double check that the correct syntax is being used in the configuration files before closing the file and saving it.</ul>
+<ul>Double check that the correct syntax is being used in the configuration files before closing the file and saving it.</ul></li>
