@@ -15,7 +15,7 @@
 #
 server {
     listen 80 default_server;
-    add_header X-Served-By "1168-web-01";
+    add_header X-Served-By "145614-web-01";
     error_page 404 /custom_404.html; location = /custom_404.html {root /usr/share/nginx/html;
         internal;}
     rewrite ^/redirect_me https://juanfe9118.github.io/Bass-Love/ permanent;
